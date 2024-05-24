@@ -1,0 +1,226 @@
+.hero-section {
+  background-color: #001a36fa;
+  padding: 4rem;
+  margin: 0 auto;
+}
+
+.hero-banner {
+  position: relative;
+  display: flex;
+  justify-items: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  height: var(--hero-banner-height, 350px);
+  z-index: 10;
+  background-color: transparent;
+}
+
+.hero-banner .title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-banner .form {
+  width: 100%;
+  background-color: #f7fdfd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  margin-top: 2rem;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-field .icon {
+  display: flex;
+  color: #1d4ed8;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.search-field input {
+  width: auto;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 1px 6rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  margin: 0 1em;
+}
+
+.search-field input::placeholder {
+  color: #ccc;
+}
+
+.search-field .clear-icon {
+  display: flex;
+  color: #666;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.hero-banner .form button {
+  background-color: #001a36;
+  color: #fff;
+  width: 8rem;
+  flex-grow: inherit;
+  padding: 0.8em;
+  border: none;
+  border-radius: 1em;
+  outline: none;
+}
+
+.hero-banner .popular-searches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2.5rem;
+}
+
+.hero-banner .popular-searches span {
+  background-color: rgba(29, 79, 216, 0.16);
+  color: #f7fdfd;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.hero-banner .popular-searches span:hover {
+  background-color: #1d4ed8;
+}
+
+.hero-banner img {
+  position: absolute;
+  top: -75%;
+  right: -10%;
+  width: 60%;
+  z-index: -1;
+}
+
+.job-search {
+  background-color: #001a36fa;
+  padding: 4rem;
+  display: flex;
+  gap: 4rem;
+  margin: 0 auto;
+}
+
+.job-search .filters {
+  width: 20%;
+  height: 50%;
+  background-color: #f7fdfd;
+  box-shadow: 0 1px 10rem rgba(0, 0, 0, 0.1);
+  padding: 1rem 2em;
+  border-radius: 1em;
+}
+
+.job-search .filters .title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.job-search .filters .filter-group {
+  margin-bottom: 1rem;
+}
+
+.job-search .filters .filter-group .label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.job-search .filters .filter-group .label-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+}
+
+.job-search .filters .filter-group .options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.job-search .filters .filter-group .option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* .job-search .job-listings {
+  width: 100%;
+} */
+
+.job-search .job-listings .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.job-search .job-listings .header .info {
+  font-size: 0.875rem;
+  color: #f7fdfd;
+}
+
+.job-search .job-listings .header .sort-by {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.job-search .job-listings .header .sort-by p {
+  font-size: 0.875rem;
+  color: #f7fdfd;
+}
+
+.job-search .job-listings .job-cards {
+  /* width: 100%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.job-search .job-listings .load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.load-more button {
+  color: #1d4ed8;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid #1d4ed8;
+  border-radius: 10rem;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: transparent;
+  outline: none;
+}
+
+.load-more button:hover {
+  background-color: #1d4ed8;
+  color: white;
+}

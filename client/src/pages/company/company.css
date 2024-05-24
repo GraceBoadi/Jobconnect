@@ -1,0 +1,185 @@
+.companies-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.25rem 4rem;
+  background-color: #001a36fa;
+}
+
+.company-banner {
+  position: relative;
+  display: flex;
+  justify-items: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  height: var(--company-banner-height, 350px);
+  z-index: 10;
+  padding: 1.25rem 4rem;
+  background-color: #001a36fa;
+}
+
+.company-banner .title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+}
+
+.company-banner .form {
+  width: 100%;
+  background-color: #f7fdfd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  margin-top: 2rem;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-field .icon {
+  display: flex;
+  color: #1d4ed8;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.search-field input {
+  width: auto;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 1px 6rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  margin: 0 1em;
+}
+
+.search-field input::placeholder {
+  color: #ccc;
+}
+
+.search-field .clear-icon {
+  display: flex;
+  color: #666;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.company-banner .form button {
+  background-color: #001a36;
+  color: #fff;
+  width: 8rem;
+  flex-grow: inherit;
+  padding: 0.8em;
+  border: none;
+  border-radius: 1em;
+  outline: none;
+}
+
+.company-banner .popular-searches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2.5rem;
+}
+
+.company-banner .popular-searches span {
+  background-color: rgba(29, 79, 216, 0.16);
+  color: #f7fdfd;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.company-banner .popular-searches span:hover {
+  background-color: #1d4ed8;
+}
+
+.company-banner img {
+  position: absolute;
+  top: -75%;
+  right: -10%;
+  width: 60%;
+  z-index: -1;
+}
+
+.companies-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.companies-info p {
+  font-size: 0.875rem;
+  color: #f7fdfd;
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.companies-sort {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+.companies-sort p {
+  font-size: 0.875rem;
+  color: #f7fdfd;
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.company-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loading-container {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.companies-count {
+  color: #f7fdfd;
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+.load-more-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.load-more-button button {
+  padding: 0.375rem 1.25rem;
+  border: 1px solid #3b82f6;
+  border-radius: 0.75rem;
+  background-color: transparent;
+  color: #3b82f6;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0;
+}

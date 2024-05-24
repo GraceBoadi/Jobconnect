@@ -1,0 +1,71 @@
+.job-card {
+  width: 100%;
+  max-width: 16rem;
+  height: 16rem;
+  background-color: #f7fdfd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 6rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.8rem;
+  padding: 1.25rem;
+}
+
+.job-card .head {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.job-card .head img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.job-card .head .details {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-card .head .details p {
+  font-size: 1.1rem !important;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #1d4ed8 !important;
+}
+
+.job-card .head .details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem !important;
+  color: #333 !important;
+}
+
+.job-card .description {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.job-card .footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-card .footer .job-type {
+  background-color: rgba(29, 79, 216, 0.16);
+  color: #1d4ed8;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.job-card .footer .date {
+  color: #999;
+  font-size: 0.875rem;
+}

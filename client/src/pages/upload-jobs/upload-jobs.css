@@ -1,0 +1,153 @@
+.upload-job-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 4rem;
+  background-color: #001a36fa;
+  padding: 4rem;
+}
+
+.upload-job-container {
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.job-posting {
+  background-color: #001a36;
+  padding: 2rem;
+  border-radius: 1em;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  width: 70%;
+  height: fit-content;
+}
+
+.job-posting {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.job-posting h2 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.job-form .form-group-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.job-form .form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.job-form .form-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.job-form textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.job-form textarea:focus,
+.job-form .form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.form-error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.job-form label {
+  color: #ddd;
+  opacity: 0.6;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.job-form .error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.job-description {
+  margin-top: 1rem;
+}
+
+.job-description textarea {
+  min-height: 8rem;
+}
+
+.recent-jobs {
+  width: 30%;
+  padding: 2rem;
+}
+
+.recent-jobs {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.recent-jobs h2 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.job-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.custom-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #3b82f6 !important;
+  color: #fff;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #1d4fd8 !important;
+}
+
+.custom-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.2);
+}

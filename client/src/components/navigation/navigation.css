@@ -1,0 +1,38 @@
+.navigation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  background-color: #001a36;
+}
+
+.jobs-logo {
+  font-size: 1.4rem;
+  color: #1d4ed8;
+  font-weight: bold;
+}
+
+.jobs-logo span {
+  color: #f1f1f1;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  color: #fff;
+}
+
+.signin-cta button {
+  color: #1d4ed8;
+  padding: 0.4em 1em;
+  border: 1px solid #1d4ed8;
+  border-radius: 2em;
+  outline: none;
+}
+
+.signin-cta button:hover {
+  background-color: #1d4ed8;
+  color: white;
+}

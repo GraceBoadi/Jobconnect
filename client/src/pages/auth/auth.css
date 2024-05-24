@@ -1,0 +1,191 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-open {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.modal-content {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: 500px;
+  transform: translate(0, 0);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-out;
+}
+
+.modal-dialog.enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-dialog.enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+.modal-dialog.leave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-dialog.leave-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition-property: transform, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+.modal-title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #212529;
+}
+
+.account-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
+.account-button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.account-button.seeker {
+  background-color: #1d4ed826;
+  color: #1d4ed8;
+}
+
+.account-button.seeker:hover {
+  background-color: #1d4ed84c;
+}
+
+.account-button.company {
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.form-wrapper {
+  width: 100%;
+}
+
+.form-wrapper .form-group-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.form-wrapper .form-group {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.form-wrapper .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.form-wrapper .form-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-wrapper .form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.form-wrapper label {
+  color: #222;
+  opacity: 0.6;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.form-wrapper .form-error {
+  color: red;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.auth-button-area {
+  margin-top: 1em;
+}
+
+.submit-button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #3b82f6 !important;
+  color: #fff;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.submit-button:hover {
+  background-color: #1d4fd8 !important;
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.2);
+}
+
+.switch-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #212529;
+  padding: 1em 0;
+}
+
+.switch-link {
+  color: #1d4ed8;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.switch-link:hover {
+  color: #001a36fa;
+}
