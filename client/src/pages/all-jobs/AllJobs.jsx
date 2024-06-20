@@ -29,31 +29,33 @@ const AllJobs = () => {
             <p className="title">Find Your Dream Job with Ease</p>
 
             <div className="form">
-              <div className="search-field">
-                <AiOutlineSearch className="icon" />
+              <div className="search-field-container">
+                <div className="search-field">
+                  <AiOutlineSearch className="icon" />
 
-                <input
-                  type="text"
-                  className=""
-                  placeholder="job title or keyword"
-                  value={searchQuery}
-                  onChange={(text) => setSearchQuery(text)}
-                />
+                  <input
+                    type="text"
+                    className="search-inp"
+                    placeholder="Job title or keyword"
+                    value={searchQuery}
+                    onChange={(text) => setSearchQuery(text)}
+                  />
 
-                <AiOutlineCloseCircle className="clear-icon" onClick />
-              </div>
-              <div className="search-field">
-                <CiLocationOn className="icon" />
+                  {/* <AiOutlineCloseCircle className="clear-icon" onClick /> */}
+                </div>
+                <div className="search-field">
+                  <CiLocationOn className="icon" />
 
-                <input
-                  type="text"
-                  className=""
-                  placeholder="add country or city"
-                  value={location}
-                  onChange={(value) => setLocation(value)}
-                />
+                  <input
+                    type="text"
+                    className="search-inp"
+                    placeholder="Add country or city"
+                    value={location}
+                    onChange={(value) => setLocation(value)}
+                  />
 
-                <AiOutlineCloseCircle className="clear-icon" onClick />
+                  {/* <AiOutlineCloseCircle className="clear-icon" onClick /> */}
+                </div>
               </div>
 
               <div>

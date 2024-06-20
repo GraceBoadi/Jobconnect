@@ -11,6 +11,7 @@ import {
   User_Profile,
 } from "./pages";
 import { useSelector } from "react-redux";
+import "./Normal.css"
 
 function Layout() {
   const { user } = useSelector((state) => state.user);

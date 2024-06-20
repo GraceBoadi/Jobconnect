@@ -42,7 +42,7 @@ const Company_Profile = () => {
                 <FiEdit3 />
               </button>
 
-              <Link to="/upload-job">
+              <Link to="/upload-jobs">
                 <button>
                   <p>Upload Job</p>
                   <FiUpload />

@@ -7,11 +7,7 @@
 .job-details {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 2.5rem;
-  }
+  flex-direction: row;
 }
 
 /* Left Side */
@@ -227,19 +223,8 @@
 
 .job-details-right {
   width: 100%;
-  @media (min-width: 768px) {
-    width: calc(33.3333% - 1.25rem);
-  }
-  @media (min-width: 1440px) {
-    width: calc(
-      50% - 1.25rem
-    );
-  }
   padding: 1.25rem;
   margin-top: 5rem;
-  @media (min-width: 768px) {
-    margin-top: 0;
-  }
 }
 
 .job-details-right-title {
@@ -258,4 +243,46 @@
   gap: 1rem;
   margin-top: 2em;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Desktop Styles (Large screens) */
+@media only screen and (max-width: 1123px) {
+  .job-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .job-details-right-jobs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Laptop Styles (Medium screens) */
+@media only screen and (min-width: 768px) and (max-width: 899px) {
+}
+
+/* Tablet Styles (Small screens) */
+@media only screen and (max-width: 767px) {
+}
+
+/* Mobile Styles (Extra small screens) */
+@media only screen and (max-width: 479px) {.job-details-container {
+  margin: 0 auto;
+  padding: 4em 2rem;
+  background-color: #001a36fa;
+}
+
+.job-details-right {
+  width: 100%;
+  padding: 0;
+  margin-top: 4rem;
+}
 }

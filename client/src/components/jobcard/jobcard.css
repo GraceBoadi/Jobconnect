@@ -1,6 +1,7 @@
 .job-card {
-  width: 100%;
-  max-width: 16rem;
+  width: auto;
+  /* max-width: 16rem;
+  min-width: 16rem; */
   height: 16rem;
   background-color: #f7fdfd;
   display: flex;

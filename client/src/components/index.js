@@ -1,6 +1,4 @@
-import Navbar from "./Navbar";
 import CustomButton from "./CustomButton";
-import Header from "./Header";
 import ListBox from "./ListBox";
 import Loading from "./Loading";
 import JobTypes from "./JobTypes";
@@ -12,9 +10,7 @@ import CompanyForm from "./company-form/CompanyForm";
 import UserForm from "./user-form/UserForm";
 
 export {
-  Navbar,
   CustomButton,
-  Header,
   ListBox,
   JobCard,
   Loading,

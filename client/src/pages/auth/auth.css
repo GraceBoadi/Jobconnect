@@ -12,11 +12,14 @@
 }
 
 .modal-content {
+  position: relative;
   display: flex;
+  width: auto;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
+  padding: 0 2rem;
 }
 
 .modal-dialog {
@@ -188,4 +191,20 @@
 
 .switch-link:hover {
   color: #001a36fa;
+}
+
+/* Desktop Styles (Large screens) */
+@media only screen and (min-width: 900px) {
+}
+
+/* Laptop Styles (Medium screens) */
+@media only screen and (min-width: 768px) and (max-width: 899px) {
+}
+
+/* Tablet Styles (Small screens) */
+@media only screen and (max-width: 767px) {
+}
+
+/* Mobile Styles (Extra small screens) */
+@media only screen and (max-width: 479px) {
 }

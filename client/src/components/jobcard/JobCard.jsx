@@ -9,7 +9,7 @@ const JobCard = ({ job }) => {
       <div className="job-card">
         <div className="head">
           <img
-            src={job?.company?.profileUrl} 
+            src={job?.company?.profileUrl}
             alt={job?.company?.name}
             className=""
           />

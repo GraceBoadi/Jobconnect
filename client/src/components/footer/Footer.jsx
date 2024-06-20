@@ -51,7 +51,7 @@ const Footer = () => {
 
       <div className="footer-credit">
         <p>
-          &copy; 2024 Job Finder —
+          &copy; 2023 Job Finder —
           <a href="#" target="_blank" rel="noopener noreferrer">
             @Grace
           </a>

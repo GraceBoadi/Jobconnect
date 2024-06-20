@@ -4,6 +4,7 @@ import authRoute from "./authRoutes.js";
 import userRoute from "./userRoutes.js";
 import companyRoute from "./companiesRoutes.js";
 import jobRoute from "./jobsRoutes.js";
+import { json } from "body-parser";
 
 const router = express.Router();
 
