@@ -5,9 +5,9 @@
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  background-color: #f7fdfd;
+  background-color: #0bd1d1;
   box-shadow: 0 4px 1em rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   padding: 1em;
 }
 
@@ -18,20 +18,27 @@
   align-items: center;
 }
 
-.company-card-info a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .company-card-info img {
   width: 2rem;
   height: 2rem;
-  border-radius: 0.5rem;
+  border-radius: 50%;
+}
+
+.company-card-details {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.company-card-info a {
+  text-decoration: none;
+  color: var(--lily-50);
 }
 
 .company-card-info span {
   font-size: 0.875rem;
-  color: #3b82f6;
+  color: var(--logan-50);
 }
 
 .company-card-location {
@@ -47,7 +54,7 @@
 .company-card-location p {
   font-size: 1rem;
   text-align: left;
-  color: #37474f;
+  color: var(--logan-800);
 }
 
 .company-card-jobs {
@@ -55,19 +62,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+  }
 }
 
 .company-card-jobs p {
   font-size: 1rem;
   font-weight: bold;
-  color: #3b82f6;
+  color: var(--logan-800);
+  margin: 0;
 }
 
 .company-card-jobs span {
   font-size: 0.75rem;
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
   font-weight: normal;
-  color: #37474f;
+  color: var(--logan-50);
+}
+
+/* Mobile Styles (Extra small screens) */
+@media only screen and (max-width: 479px) {
 }

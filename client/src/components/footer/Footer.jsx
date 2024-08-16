@@ -28,8 +28,8 @@ const Footer = () => {
           <h2>Subscribe to our newsletter</h2>
           <div className="newsletter-subscribe">
             <div className="subscribe">
-              <input type="text" />
-              <button>Subscribe</button>
+              <input type="email" placeholder="example@email.com" />
+              <button className="btn">Subscribe</button>
             </div>
             <div className="social-links">
               <a>
@@ -51,13 +51,13 @@ const Footer = () => {
 
       <div className="footer-credit">
         <p>
-          &copy; 2023 Job Finder —
+          &copy; 2024 Jobs Connect —
           <a href="#" target="_blank" rel="noopener noreferrer">
             @Grace
           </a>
         </p>
 
-        <span>Designed by Grace</span>
+        <span>Designed by Grace Gyawa Boadi</span>
       </div>
     </div>
   );

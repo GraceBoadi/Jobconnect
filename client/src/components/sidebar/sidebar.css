@@ -1,0 +1,113 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  flex: 1;
+  border-right: 1px solid var(--lily-100);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #e8e1e9 0%, #d9c8d9 50%, #c5adc5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#e8e1e9, #c5adc5,GradientType=0 );
+  transition: all 0.4s ease-in-out;
+}
+
+.sidebar > a {
+  font-size: 1.4rem;
+  color: var(--lily-700);
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar > a span {
+  background-image: var(--gradient-1);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.sidebar .side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar .side-nav .item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.sidebar .side-nav .item:hover {
+  background: #fafafa;
+}
+
+.sidebar .side-nav .item a {
+  color: var(--lily-50);
+  transition: all 0.3s ease;
+}
+
+.sidebar .side-nav .item i {
+  font-size: 20px;
+  color: var(--lily-50);
+  transition: all 0.3s ease;
+}
+
+.sidebar .side-nav .item.active {
+  background: #fafafa;
+}
+
+.sidebar .side-nav .item.active a,
+.sidebar .side-nav .item.active i {
+  color: #111;
+  font-weight: bold;
+}
+
+.sidebar .side-nav .item:hover a,
+.sidebar .side-nav .item:hover i {
+  color: #111;
+}
+
+.sidebar .side-profile {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  padding: 14px 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar .side-profile .info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar .side-profile .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar .side-profile .info a {
+  color: #0ea5ea;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.sidebar .side-profile .info p {
+  font-size: 10px;
+  color: #666869;
+  padding: 6px;
+  border-radius: 8px;
+  background: #e7e7e7;
+  font-weight: 600;
+}

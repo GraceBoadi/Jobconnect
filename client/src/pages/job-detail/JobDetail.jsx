@@ -1,21 +1,49 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { jobs } from "../../utils/data";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import "./job-detail.css";
 import { Footer, JobCard, Navigation } from "../../components";
+import { getJobById, getJobPosts } from "../../api/job-api";
+import { updateURL } from "../../utils";
 
 const JobDetails = () => {
   const params = useParams();
-  const id = parseInt(params.id) - 1;
-  const [job, setJob] = useState(jobs[0]);
+  const id = params.id;
+  const [job, setJob] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const [selected, setSelected] = useState("0");
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    setJob(jobs[id ?? 0]);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    fetchJobDetails();
+    fetchJobs();
   }, [id]);
+
+  const fetchJobDetails = async () => {
+    try {
+      const jobData = await getJobById(id);
+      setJob(jobData.data);
+    } catch (error) {
+      console.error("Error fetching job details:", error);
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  const fetchJobs = async () => {
+    try {
+      const newURL = updateURL({
+        navigate: navigate,
+        location: location,
+      });
+      const data = await getJobPosts(newURL);
+      setJobs(data.data);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
 
   return (
     <div>
@@ -23,7 +51,6 @@ const JobDetails = () => {
 
       <div className="job-details-container">
         <div className="job-details">
-          {/* LEFT SIDE */}
           <div className="job-details-left">
             <div className="job-details-left-header">
               <div className="job-details-left-header-info">
@@ -31,8 +58,6 @@ const JobDetails = () => {
 
                 <div className="">
                   <p>{job?.jobTitle}</p>
-
-                  <span className="location">{job?.location}</span>
 
                   <span className="company">{job?.company?.name}</span>
 
@@ -61,13 +86,18 @@ const JobDetails = () => {
               </div>
 
               <div className="job-details-left-details-card bg-red">
-                <span>No. of Applicants</span>
-                <p>{job?.applicants?.length}K</p>
+                <span>Applicants</span>
+                <p>{job?.application?.length}</p>
               </div>
 
               <div className="job-details-left-details-card bg-voilet">
-                <span>No. of Vacancies</span>
+                <span>Vacancies</span>
                 <p>{job?.vacancies}</p>
+              </div>
+
+              <div className="job-details-left-details-card bg-voilet">
+                <span>Experiences</span>
+                <p>{job?.experience}</p>
               </div>
             </div>
 
@@ -81,16 +111,12 @@ const JobDetails = () => {
             <div className="job-details-left-content">
               {selected === "0" ? (
                 <>
-                  <p>Job Decsription</p>
+                  <p>Job Description</p>
 
-                  <span>{job?.detail[0]?.desc}</span>
+                  <span>{job?.detail?.desc}</span>
 
-                  {job?.detail[0]?.requirement && (
-                    <>
-                      <p>Requirement</p>
-                      <span>{job?.detail[0]?.requirement}</span>
-                    </>
-                  )}
+                  <p>Requirements</p>
+                  <span>{job?.detail?.requirements}</span>
                 </>
               ) : (
                 <>
@@ -106,25 +132,32 @@ const JobDetails = () => {
               )}
             </div>
 
-            <div className="job-details-left-apply">
-              <button>Apply Now</button>
+            <div className="job-details-apply">
+              <Link className="btn" to={job?.jobURL} target="blank_">
+                Apply Now
+              </Link>
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
           <div className="job-details-right">
-            <p className="job-details-right-title">Similar Job Post</p>
+            <h3 className="job-details-right-title">Similar Job Posts</h3>
 
             <div className="job-details-right-jobs">
-              {jobs?.slice(0, 6).map((job, index) => (
-                <JobCard job={job} key={index} />
-              ))}
+              {jobs?.slice(0, 4).map((job, index) => {
+                const data = {
+                  name: job?.company?.name,
+                  email: job?.company?.email,
+                  logo: job?.company?.profileUrl,
+                  ...job,
+                };
+                return <JobCard job={data} key={index} />;
+              })}
             </div>
           </div>
         </div>
-      </div>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 };

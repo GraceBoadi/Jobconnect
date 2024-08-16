@@ -3,8 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 1.25rem 4rem;
-  background-color: #001a36fa;
+  padding: 4rem;
 }
 
 .company-banner {
@@ -13,104 +12,85 @@
   justify-items: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  height: var(--company-banner-height, 350px);
+  height: 300px;
   z-index: 10;
-  padding: 1.25rem 4rem;
-  background-color: #001a36fa;
 }
 
 .company-banner .title {
-  color: #fff;
-  font-weight: bold;
-  font-size: 3rem;
-  margin-bottom: 1.25rem;
+  background-image: var(--gradient-1);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-weight: 600;
+  font-size: 2.8rem;
+  margin-top: 2rem;
 }
 
 .company-banner .form {
   width: 100%;
-  background-color: #f7fdfd;
+  background-color: #fdfdfd;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 2rem;
+  gap: 1rem;
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
   margin-top: 2rem;
 }
 
+.search-field-container {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
 .search-field {
+  width: 100%;
   display: flex;
   align-items: center;
-  width: 100%;
+  gap: 1rem;
+  width: auto;
+}
+
+.search-field .field-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-field .icon {
   display: flex;
-  color: #1d4ed8;
-  font-size: 1.25rem;
+  padding: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
-.search-field input {
-  width: auto;
+.search-field .search-inp {
+  width: 90%;
+  font-size: 1rem;
+  color: #222;
   padding: 0.75rem;
   background-color: transparent;
-  border: none;
-  font-size: 1rem;
-  outline: none;
   box-shadow: 0 1px 6rem rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
   border-radius: 1em;
-  margin: 0 1em;
 }
 
-.search-field input::placeholder {
-  color: #ccc;
+.search-field .search-inp::placeholder {
+  color: #888;
 }
 
 .search-field .clear-icon {
   display: flex;
-  color: #666;
+  color: #222;
   font-size: 1.25rem;
   cursor: pointer;
-}
-
-.company-banner .form button {
-  background-color: #001a36;
-  color: #fff;
-  width: 8rem;
-  flex-grow: inherit;
-  padding: 0.8em;
-  border: none;
-  border-radius: 1em;
-  outline: none;
-}
-
-.company-banner .popular-searches {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-top: 2.5rem;
-}
-
-.company-banner .popular-searches span {
-  background-color: rgba(29, 79, 216, 0.16);
-  color: #f7fdfd;
-  padding: 0.5rem 1rem;
-  border-radius: 100px;
-  font-size: 0.875rem;
-  cursor: pointer;
-}
-
-.company-banner .popular-searches span:hover {
-  background-color: #1d4ed8;
-}
-
-.company-banner img {
-  position: absolute;
-  top: -75%;
-  right: -10%;
-  width: 60%;
-  z-index: -1;
 }
 
 .companies-info {
@@ -121,30 +101,20 @@
 }
 
 .companies-info p {
-  font-size: 0.875rem;
-  color: #f7fdfd;
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
+  color: #222;
 }
 
 .companies-sort {
   display: flex;
-  flex-direction: column;
-  gap: 0;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
-  }
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .companies-sort p {
-  font-size: 0.875rem;
-  color: #f7fdfd;
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
+  font-size: 1rem;
+  color: #222;
 }
 
 .company-list {
@@ -160,7 +130,7 @@
 }
 
 .companies-count {
-  color: #f7fdfd;
+  color: #222;
   font-size: 0.875rem;
   text-align: right;
 }
@@ -182,4 +152,43 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0;
+}
+
+/* Desktop Styles (Large screens) */
+@media only screen and (min-width: 900px) {
+}
+
+/* Laptop Styles (Medium screens) */
+@media only screen and (min-width: 768px) and (max-width: 899px) {
+}
+
+/* Tablet Styles (Small screens) */
+@media only screen and (max-width: 767px) {
+  .companies-container {
+    padding: 4rem 2rem;
+  }
+
+  .company-banner .form .btn {
+    display: none;
+  }
+}
+
+/* Mobile Styles (Extra small screens) */
+@media only screen and (max-width: 479px) {
+  .company-banner {
+    position: relative;
+    height: auto;
+  }
+
+  .company-banner .title {
+    font-size: 2rem;
+  }
+
+  .companies-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
 }

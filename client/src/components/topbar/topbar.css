@@ -1,0 +1,76 @@
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav .nav-left,
+.nav .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: auto;
+}
+
+.nav .search,
+.nav .city {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.nav .search input,
+.nav .city input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  padding-left: 36px;
+}
+
+.nav .search i,
+.nav .city i {
+  position: absolute;
+  font-size: 23px;
+  padding: 6px;
+}
+
+.nav .nav-left > i,
+.nav .nav-right > i,
+.nav > i {
+  font-size: 20px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.nav .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav .user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav .user-info a {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.nav .user-info a i {
+  font-size: 20px;
+}
+
+.nav .user-info p {
+  font-size: 13px;
+}

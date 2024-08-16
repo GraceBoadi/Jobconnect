@@ -1,9 +1,12 @@
 import "./company-form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { updateCompanyProfile } from "../../api/company-api";
+import { Login } from "../../redux/userSlice";
+import { handleFileUpload } from "../../utils";
 
 const CompanyForm = ({ open, setOpen }) => {
   const { user } = useSelector((state) => state.user);
@@ -13,16 +16,42 @@ const CompanyForm = ({ open, setOpen }) => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: { ...user?.user },
+    defaultValues: { ...user },
   });
 
   const dispatch = useDispatch();
   const [profileImage, setProfileImage] = useState("");
-  const [uploadCv, setUploadCv] = useState("");
-
-  const onSubmit = () => {};
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const closeModal = () => setOpen(false);
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+
+    const completeData = {
+      name: data.name,
+      location: data.location,
+      contact: data.contact,
+      about: data.about,
+      profileUrl: profileImage
+        ? await handleFileUpload(profileImage)
+        : data.profileUrl,
+    };
+
+    try {
+      const token = user?.token;
+      const response = await updateCompanyProfile(completeData, token);
+      window.localStorage.setItem("userInfo", JSON.stringify(response.company));
+      window.localStorage.setItem("token", response.token);
+      dispatch(Login());
+      closeModal();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div>
       <Transition appear show={open ?? false} as={Fragment}>
@@ -60,7 +89,7 @@ const CompanyForm = ({ open, setOpen }) => {
                   </Dialog.Title>
 
                   <form
-                    className="company-profile-form-form"
+                    className="company-profile-form_"
                     onSubmit={handleSubmit(onSubmit)}
                   >
                     <div className="form-group">
@@ -68,7 +97,7 @@ const CompanyForm = ({ open, setOpen }) => {
                       <input
                         name="name"
                         type="text"
-                        placeholder="company name"
+                        placeholder="Company name"
                         className="form-input"
                         {...register("name", {
                           required: "Company Name is required",
@@ -88,8 +117,8 @@ const CompanyForm = ({ open, setOpen }) => {
                       </label>
                       <input
                         name="location"
-                        placeholder="eg. Califonia"
                         type="text"
+                        placeholder="e.g. California"
                         className="form-input"
                         {...register("location", {
                           required: "Address is required",
@@ -108,8 +137,8 @@ const CompanyForm = ({ open, setOpen }) => {
                         <label className="form-group__label">Contact</label>
                         <input
                           name="contact"
-                          placeholder="Phone Number"
                           type="text"
+                          placeholder="Phone Number"
                           className="form-input"
                           {...register("contact", {
                             required: "Contact is required!",
@@ -135,7 +164,7 @@ const CompanyForm = ({ open, setOpen }) => {
                       </div>
                     </div>
 
-                    <div className="flex flex-col">
+                    <div className="form-group">
                       <label className="company-profile-form-label">
                         About Company
                       </label>
@@ -149,16 +178,19 @@ const CompanyForm = ({ open, setOpen }) => {
                         aria-invalid={errors.about ? "true" : "false"}
                       ></textarea>
                       {errors.about && (
-                        <span
-                          role="alert"
-                          className="company-profile-form-error"
-                        >
+                        <span className="company-profile-form-error">
                           {errors.about?.message}
                         </span>
                       )}
                     </div>
 
-                    <button type="submit">Submit</button>
+                    <button
+                      type="submit"
+                      className="form-submit-button"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Submitting..." : "Submit"}
+                    </button>
                   </form>
                 </Dialog.Panel>
               </Transition.Child>

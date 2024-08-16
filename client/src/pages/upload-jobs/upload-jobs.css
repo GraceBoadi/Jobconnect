@@ -1,35 +1,28 @@
 .upload-job-container {
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
-  gap: 4rem;
-  background-color: #001a36fa;
+  background-color: transparent;
   padding: 4rem;
 }
 
-.upload-job-container {
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
+.job-posting-container {
+  display: flex;
+  gap: 4rem;
+  background-color: transparent;
+  margin: 0 auto;
+  padding-bottom: 4rem;
 }
 
 .job-posting {
-  background-color: #001a36;
   padding: 2rem;
   border-radius: 1em;
+  background-color: #fdfdfd;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   width: 70%;
   height: fit-content;
 }
 
-.job-posting {
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-}
-
 .job-posting h2 {
-  color: #fff;
+  color: #222;
   font-weight: 600;
   font-size: 1.25rem;
   margin-bottom: 1rem;
@@ -84,7 +77,7 @@
 }
 
 .job-form label {
-  color: #ddd;
+  color: #444;
   opacity: 0.6;
   font-size: 0.8rem;
   font-weight: 500;
@@ -107,47 +100,36 @@
 
 .recent-jobs {
   width: 30%;
-  padding: 2rem;
-}
-
-.recent-jobs {
-  @media (max-width: 768px) {
-    width: 100%;
-  }
 }
 
 .recent-jobs h2 {
-  color: #fff;
+  color: #222;
   font-weight: 600;
   font-size: 1.25rem;
   margin-bottom: 1rem;
 }
 
 .job-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  padding: 1rem;
 }
 
-.custom-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 1em;
-  cursor: pointer;
-  background-color: #3b82f6 !important;
-  color: #fff;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
+/* Desktop Styles (Large screens) */
+@media only screen and (max-width: 1023px) {
+  .job-posting-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+  }
 
-.custom-button:hover {
-  background-color: #1d4fd8 !important;
-}
-
-.custom-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.2);
+  .job-posting,
+  .recent-jobs {
+    width: 100%;
+  }
 }

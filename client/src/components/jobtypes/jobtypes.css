@@ -1,0 +1,75 @@
+/* Base styles for the Listbox component */
+.job-select {
+  position: relative;
+  width: 100%;
+}
+
+.job-select .job-select-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  cursor: default;
+  border-radius: 0.6rem;
+  background-color: #fff;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.job-select .job-select-btn:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(69, 130, 246, 0.2);
+}
+
+.job-select .job-select-btn .truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.job-select .job-select-btn .job-select-icon {
+  height: 1rem;
+  width: 1rem;
+  font-size: 1.8rem;
+  color: #444;
+}
+
+.job-select .options-list {
+  position: absolute;
+  top: 2rem;
+  max-height: 38rem;
+  width: 100%;
+  overflow-y: auto;
+  border-radius: 0.6rem;
+  background-color: #fff;
+  padding: 0.25rem;
+  text-align: left;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.job-select .options-list .option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.6rem;
+}
+
+.job-select .options-list .option .truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.job-select .options-list .option .option-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #444;
+}

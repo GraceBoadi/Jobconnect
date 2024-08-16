@@ -1,4 +1,4 @@
-import NoProfile from "./userprofile.png";
+import NoProfile from "./userprofile.jpg";
 import HeroImage from "./hero.png";
 import Google from "./google.png";
 import Linkedin from "./linkedin.png";
@@ -11,6 +11,11 @@ import Office from "./office.jpg";
 import JobImg from "./job.jpg";
 import Facebook from "./facebook.png";
 import CodeWave from "./codewave.png";
+import HeroBanner from './hero-banner.png'
+import Pattern2 from './pattern-2.svg'
+import Pattern3 from './pattern-3.svg'
+import Shadow1 from './shadow-1.svg'
+import Shadow2 from './shadow-2.svg'
 
 export {
   CodeWave,
@@ -26,4 +31,9 @@ export {
   Youtube,
   Office,
   JobImg,
+  HeroBanner,
+  Pattern2,
+  Pattern3,
+  Shadow1,
+  Shadow2,
 };

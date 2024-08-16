@@ -4,7 +4,11 @@ import { users } from "../utils/data";
 
 const initialState = {
   // user: {},
-  user: JSON.parse(window?.localStorage.getItem("userInfo")) ?? users[1],
+  user:
+    {
+      ...JSON.parse(window?.localStorage.getItem("userInfo")),
+      token: window?.localStorage.getItem("token"),
+    } ?? users[1],
 };
 
 const userSlice = createSlice({
@@ -12,11 +16,15 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      state.user = action.payload.user;
+      state.user =
+        {
+          ...JSON.parse(window?.localStorage.getItem("userInfo")),
+          token: window?.localStorage.getItem("token"),
+        } ?? {};
     },
     logout(state) {
       state.user = null;
-      localStorage?.removeItem("userInfo");
+      localStorage?.clear();
     },
   },
 });

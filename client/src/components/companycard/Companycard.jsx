@@ -9,8 +9,8 @@ const Companycard = ({ cmp }) => {
           <Link to={`/company-profile/${cmp?._id}`}>
             <img src={cmp?.profileUrl} alt={cmp?.name} />
           </Link>
-          <div className="h-full flex flex-col">
-            <Link to={`/company-profiles/${cmp?._id}`}>{cmp?.name}</Link>
+          <div className="company-card-details">
+            <Link to={`/company-profile/${cmp?._id}`}>{cmp?.name}</Link>
             <span>{cmp?.email}</span>
           </div>
         </div>

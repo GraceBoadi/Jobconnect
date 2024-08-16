@@ -1,14 +1,16 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { BiChevronDown } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { AiOutlineClose, AiOutlineLogout } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./navigation.css";
+import { dispatch } from "../../redux/store";
+import { Logout } from "../../redux/userSlice";
+import { NoProfile } from "../../assets";
 
-function MenuList({ user, onClick }) {
+export function MenuList({ user, onClick }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
@@ -16,26 +18,17 @@ function MenuList({ user, onClick }) {
   };
 
   const handleLogout = () => {
-    // Implement logout functionality here
+    dispatch(Logout());
   };
 
   return (
     <div className="menu-list">
       <Menu as="div">
-        <div className="menu-button">
+        <div className="menu-button" onClick={handleMenuToggle}>
           <img
-            src={user?.profileUrl ?? "/src/assets/avatar5.jpg"}
+            src={user?.profileUrl ?? NoProfile}
             alt="user profile"
             className="menu-img"
-          />
-          <div className="menu-profile">
-            <p>{user?.firstName ?? user?.name}Deja</p>
-            <span>{user?.jobTitle ?? user?.email}@email.com</span>
-          </div>
-          <BiChevronDown
-            className={`menu-button-svg ${menuOpen ? "active" : ""}`}
-            aria-hidden="true"
-            onClick={handleMenuToggle}
           />
         </div>
 
@@ -55,7 +48,9 @@ function MenuList({ user, onClick }) {
                 {({ active }) => (
                   <Link
                     to={`${
-                      user?.accountType ? "user-profile" : "company-profile"
+                      user?.accountType === "seeker"
+                        ? `/user-profile/${user?._id}`
+                        : `/company-profile/${user?._id}`
                     }`}
                     className={active ? "active" : ""}
                     onClick={onClick}
@@ -64,7 +59,9 @@ function MenuList({ user, onClick }) {
                       className={`menu-item-svg ${active ? "active" : ""}`}
                       aria-hidden="true"
                     />
-                    {user?.accountType ? "User Profile" : "Company Profile"}
+                    {user?.accountType === "seeker"
+                      ? "User Profile"
+                      : "Company Profile"}
                   </Link>
                 )}
               </Menu.Item>
@@ -73,7 +70,7 @@ function MenuList({ user, onClick }) {
             <div className="menu-item">
               <Menu.Item>
                 {({ active }) => (
-                  <button
+                  <Link
                     onClick={handleLogout}
                     className={active ? "active" : ""}
                   >
@@ -82,7 +79,7 @@ function MenuList({ user, onClick }) {
                       aria-hidden="true"
                     />
                     Log Out
-                  </button>
+                  </Link>
                 )}
               </Menu.Item>
             </div>
@@ -93,77 +90,121 @@ function MenuList({ user, onClick }) {
   );
 }
 
-const Navigation = () => {
-  const user = useSelector((state) => state.user);
+const Navigation = ({ isAuth }) => {
+  const { user } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   const handleToggleNavbar = () => {
     setIsOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove event listener on component unmount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="navigation-container">
+    <div className={`navigation-container ${isSticky ? "sticky-bar" : ""}`}>
       <nav>
         <div>
           <Link to="/" className="navigation-logo">
-            All<span>Jobs</span>
+            Job-<span>Connect</span>
           </Link>
         </div>
 
-        <ul className="navigation-list">
-          <li>
-            <Link to="/all-jobs">Find Job</Link>
-          </li>
-          <li>
-            <Link to="/company">Companies</Link>
-          </li>
-          <li>
-            <Link to="/upload-jobs">Upload Job</Link>
-          </li>
-          <li>
-            <Link to="/about-us">About</Link>
-          </li>
-        </ul>
+        {!isAuth && (
+          <>
+            <ul className="navigation-list">
+              <li>
+                <Link to="/all-jobs">Find Job</Link>
+              </li>
+              <li>
+                <Link
+                  to={`${
+                    user?.accountType === "seeker"
+                      ? `/dashboard`
+                      : `/company-profile/${user?._id}`
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/company">Companies</Link>
+              </li>
+              <li>
+                <Link to="/about-us">About</Link>
+              </li>
+            </ul>
 
-        <div className="signin-cta">
-          {!user?.token ? (
-            <Link to="/auth">
-              <button className="signin-btn hide">Sign In</button>
-            </Link>
-          ) : (
-            <MenuList user={user} />
-          )}
+            <div className="signin-cta">
+              {user?.token ? (
+                <div className="ml-display">
+                  <MenuList user={user} />
+                </div>
+              ) : (
+                <Link to="/auth?login=true" className="hide">
+                  <button className="btn">Sign In</button>
+                </Link>
+              )}
 
-          <div className="menu-toggle" onClick={handleToggleNavbar}>
-            {isOpen ? <AiOutlineClose size={26} /> : <HiMenuAlt3 size={26} />}
-          </div>
-        </div>
+              <div className="menu-toggle" onClick={handleToggleNavbar}>
+                {isOpen ? (
+                  <AiOutlineClose size={26} />
+                ) : (
+                  <HiMenuAlt3 size={26} />
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </nav>
 
-      <div className={`mobile-menu ${isOpen ? "flex" : "hidden"}`}>
-        <Link to="/all-jobs" onClick={handleToggleNavbar}>
-          Find Job
-        </Link>
-        <Link to="/company" onClick={handleToggleNavbar}>
-          Companies
-        </Link>
-        <Link to="/upload-jobs" onClick={handleToggleNavbar}>
-          Upload Job
-        </Link>
-        <Link to="/about-us" onClick={handleToggleNavbar}>
-          About
-        </Link>
+      {!isAuth && (
+        <div className={`mobile-menu ${isOpen ? "active" : ""}`}>
+          <Link to="/all-jobs" onClick={handleToggleNavbar}>
+            Find Job
+          </Link>
+          <Link
+            to={`${
+              user?.accountType === "seeker"
+                ? `/dashboard`
+                : `/company-profile/${user?._id}`
+            }`}
+            onClick={handleToggleNavbar}
+          >
+            Dashboard
+          </Link>
+          <Link to="/company" onClick={handleToggleNavbar}>
+            Companies
+          </Link>
+          <Link to="/about-us" onClick={handleToggleNavbar}>
+            About
+          </Link>
 
-        <div className="signin-cta">
-          {!user?.token ? (
-            <Link to="/auth">
-              <button className="signin-btn">Sign In</button>
-            </Link>
-          ) : (
-            <MenuList user={user} onClick={handleToggleNavbar} />
-          )}
+          <div className="signin-cta">
+            {user?.token ? (
+              <MenuList user={user} onClick={handleToggleNavbar} />
+            ) : (
+              <Link to="/auth?login=true">
+                <button className="btn">Sign In</button>
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,183 @@
+.body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  flex: 8;
+  padding: 20px 40px;
+  margin: 0 auto;
+}
+
+.container .sidebar_toggler {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.container .main {
+  height: 90vh;
+  display: flex;
+  gap: 2rem;
+  overflow-y: auto;
+  border-radius: 1rem;
+}
+
+.container .main::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.container .main .content {
+  flex: 9;
+}
+
+.container .main .content .header h4 span {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+}
+
+.container .main .content .header p {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.container .main .content .job-cards {
+  margin-top: 20px;
+  width: 100%;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main .filters {
+  width: 20%;
+  max-width: 200px;
+  min-width: 200px;
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 1px 10rem rgba(0, 0, 0, 0.1);
+  padding: 1rem 2em;
+  border-radius: 1em;
+}
+
+.main .filters .title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.main .filters .filter-group {
+  margin-bottom: 1rem;
+}
+
+.main .filters .filter-group .label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.main .filters .filter-group .label-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+}
+
+.main .filters .filter-group .options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.main .filters .filter-group .option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    padding: 20px 20px;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    box-shadow: 0 1px 6rem rgba(255, 255, 255, 0.8);
+    z-index: 100;
+  }
+
+  .sidebar.visible {
+    transform: translateX(0);
+  }
+
+  .sidebar.hidden {
+    transform: translateX(-100%);
+  }
+
+  .container .nav button#menuToggle {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  /* .container .main {
+    flex-direction: column-reverse;
+  } */
+
+  .container .nav .nav-left {
+    width: 40%;
+  }
+
+  .container .nav .city {
+    display: none;
+  }
+
+  .container .main .content {
+    padding-bottom: 20px;
+  }
+
+  .nav .nav-left > i,
+  .container .nav-right > i {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container .nav > button {
+    padding: 10px;
+  }
+
+  .nav .nav-left > i,
+  .container .nav > i {
+    display: none;
+  }
+
+  .container .main .content .job-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .container .main .filters {
+    display: none;
+  }
+}

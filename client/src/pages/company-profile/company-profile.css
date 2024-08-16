@@ -1,115 +1,78 @@
 .company-profile {
   margin: 0 auto;
-  padding: 4rem;
-  background-color: #001a36fa;
-}
-
-.company-profile-heading {
-  width: 100%;
+  border-radius: 1rem;
 }
 
 .company-profile-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
+  gap: 2rem;
 }
 
 .company-profile-header h2 {
-  color: #e2e8f0;
+  color: #222;
   font-size: 1.25rem;
   font-weight: bold;
+  margin: 0;
 }
 
 .company-profile-action {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-top: 1.25rem;
-  @media (min-width: 768px) {
-    padding-top: 0;
-  }
   gap: 1rem;
-}
-
-.company-profile-action button {
-  display: inline-flex;
-  align-items: center;
-  gap: 1em;
-  padding: 0.6rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #3b82f6;
-  color: #3b82f6;
-  text-align: center;
-  font-size: 0.875rem;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.company-profile-action button:hover {
-  background-color: #3b82f6;
-  color: #fff;
-}
-
-.company-profile-action button.primary {
-  padding: 0.8rem;
-  background-color: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
-}
-
-.company-profile-action button.primary:hover {
-  background-color: #2c69d8;
-  border-color: #2c69d8;
 }
 
 .company-profile-info {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
   margin-top: 1rem;
-  @media (min-width: 768px) {
-    margin-top: 2rem;
-  }
   font-size: 0.875rem;
 }
 
 .company-profile-info .profile-info {
-  width: 70%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
-.company-profile-info p {
+.company-profile-info .about-title {
+  color: #222;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.company-profile-info .about-text {
+  font-size: 1rem;
+  color: #333;
+  white-space: wrap;
+  margin: 0;
+}
+
+.company-profile-info .profile-info p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #e2e8f0;
+  background-color: #fdfdfd;
   border-radius: 0.5rem;
-  color: #37474f;
+  color: #444;
+  margin: 0;
 }
 
-.company-profile-info p .picon {
+.company-profile-info .profile-info p .picon {
   margin-right: 0.5rem;
 }
 
 .company-profile-job-count {
   display: flex;
   align-items: center;
-  @media (min-width: 768px) {
-    margin-top: 0;
-  }
-}
-
-.company-profile-job-count span {
-  font-size: 1.25rem;
 }
 
 .company-profile-job-count p {
@@ -118,18 +81,20 @@
 
 .company-profile-jobs {
   width: 100%;
-  margin-top: 4rem;
+  height: auto;
+  margin: 4rem 0;
 }
 
 .company-profile-jobs .profile-jobs {
-  padding: 1rem 0;
-  color: #e2e8f0;
-  font-size: large;
+  color: #222;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
 }
 
 .company-profile-jobcard {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2.5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
 }

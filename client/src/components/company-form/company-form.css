@@ -77,7 +77,7 @@
   color: #37474f;
 }
 
-.company-profile-form-form {
+.company-profile-form_ {
   width: 100%;
   margin-top: 0.5rem;
   display: flex;
@@ -93,19 +93,19 @@
   flex-direction: column;
 }
 
-.company-profile-form-form .form-group-flex {
+.company-profile-form_ .form-group-flex {
   display: flex;
   justify-content: space-between;
   gap: 8px;
 }
 
-.company-profile-form-form .form-group {
+.company-profile-form_ .form-group {
   display: flex;
   flex-direction: column;
   /* margin-top: 1rem; */
 }
 
-.company-profile-form-form .form-input {
+.company-profile-form_ .form-input {
   width: 100%;
   padding: 0.6rem 1rem;
   border: 1px solid #ccc;
@@ -113,7 +113,7 @@
   font-size: 1rem;
 }
 
-.company-profile-form-form .form-input:focus {
+.company-profile-form_ .form-input:focus {
   outline: none;
   border-color: #3b82f6;
 }
@@ -124,14 +124,14 @@
   margin-top: 0.25rem;
 }
 
-.company-profile-form-form label {
+.company-profile-form_ label {
   color: #222;
   opacity: 0.6;
   font-size: 0.8rem;
   font-weight: 500;
 }
 
-.company-profile-form-form .form-error {
+.company-profile-form_ .form-error {
   color: red;
   font-size: 0.75rem;
   margin: 0;

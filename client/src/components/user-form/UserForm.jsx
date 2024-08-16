@@ -1,26 +1,65 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import "./user-form.css";
+import { updateUser } from "../../api/auth-api";
+import { Login } from "../../redux/userSlice";
+import { handleFileUpload } from "../../utils";
 
 const UserForm = ({ open, setOpen }) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+
+  const closeModal = () => setOpen(false);
+
+  const [profileImage, setProfileImage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    defaultValues: { ...user?.user },
+    defaultValues: { ...user },
   });
-  const dispatch = useDispatch();
-  const [profileImage, setProfileImage] = useState("");
-  const [uploadCv, setUploadCv] = useState("");
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
 
-  const closeModal = () => setOpen(false);
+    const completeData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      contact: data.contact,
+      location: data.location,
+      jobTitle: data.jobTitle,
+      about: data.about,
+      profileUrl: profileImage
+        ? await handleFileUpload(profileImage)
+        : data.profileUrl,
+    };
+
+    try {
+      const response = await updateUser(completeData, user?.token);
+      window.localStorage.setItem("userInfo", JSON.stringify(response.user));
+      window.localStorage.setItem("token", response.token);
+      dispatch(Login());
+      closeModal();
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile && selectedFile.type.startsWith("image/")) {
+      setProfileImage(selectedFile);
+    }
+  };
 
   return (
     <div>
@@ -53,6 +92,7 @@ const UserForm = ({ open, setOpen }) => {
                   <Dialog.Title as="h3" className="dialog-title">
                     Edit Profile
                   </Dialog.Title>
+
                   <form
                     className="dialog-form"
                     onSubmit={handleSubmit(onSubmit)}
@@ -80,7 +120,6 @@ const UserForm = ({ open, setOpen }) => {
                           )}
                         </div>
                       </div>
-
                       <div className="dialog-form-input">
                         <div className="form-group">
                           <label className="form-group__label">Last Name</label>
@@ -102,19 +141,17 @@ const UserForm = ({ open, setOpen }) => {
                         </div>
                       </div>
                     </div>
-
                     <div className="dialog-form-input-group">
                       <div className="dialog-form-input">
                         <div className="form-group">
                           <label className="form-group__label">Contact</label>
                           <input
                             name="contact"
-                            label="Contact"
                             placeholder="Phone Number"
                             type="text"
                             className="form-input"
                             {...register("contact", {
-                              required: "Coontact is required!",
+                              required: "Contact is required!",
                             })}
                             aria-invalid={errors.contact ? "true" : "false"}
                           />
@@ -125,7 +162,6 @@ const UserForm = ({ open, setOpen }) => {
                           )}
                         </div>
                       </div>
-
                       <div className="dialog-form-input">
                         <div className="form-group">
                           <label className="form-group__label">Location</label>
@@ -147,27 +183,25 @@ const UserForm = ({ open, setOpen }) => {
                         </div>
                       </div>
                     </div>
-
-                    <div className="form-group">
-                      <label className="form-group__label">Job Title</label>
-                      <input
-                        name="jobTitle"
-                        placeholder="Software Engineer"
-                        type="text"
-                        className="form-input"
-                        {...register("jobTitle", {
-                          required: "Job Title is required",
-                        })}
-                        aria-invalid={errors.jobTitle ? "true" : "false"}
-                      />
-                      {errors.jobTitle && (
-                        <span className="form-error">
-                          {errors.jobTitle?.message}
-                        </span>
-                      )}
-                    </div>
-                    
-                    <div className="w-full flex gap-2 text-sm">
+                    <div className="dialog-form-input-group">
+                      <div className="form-group">
+                        <label className="form-group__label">Job Title</label>
+                        <input
+                          name="jobTitle"
+                          placeholder="Software Engineer"
+                          type="text"
+                          className="form-input"
+                          {...register("jobTitle", {
+                            required: "Job Title is required",
+                          })}
+                          aria-invalid={errors.jobTitle ? "true" : "false"}
+                        />
+                        {errors.jobTitle && (
+                          <span className="form-error">
+                            {errors.jobTitle?.message}
+                          </span>
+                        )}
+                      </div>
                       <div className="upload-form">
                         <label className="text-gray-600 text-sm mb-1">
                           Profile Picture
@@ -175,11 +209,11 @@ const UserForm = ({ open, setOpen }) => {
                         <input
                           className="custom-file-input"
                           type="file"
-                          onChange={(e) => setProfileImage(e.target.files[0])}
+                          accept="image/*"
+                          onChange={handleChange}
                         />
                       </div>
-
-                      <div className="upload-form">
+                      {/* <div className="upload-form">
                         <label className="text-gray-600 text-sm mb-1">
                           Resume
                         </label>
@@ -188,10 +222,9 @@ const UserForm = ({ open, setOpen }) => {
                           type="file"
                           onChange={(e) => setUploadCv(e.target.files[0])}
                         />
-                      </div>
+                      </div> */}
                     </div>
-
-                    <div className="flex flex-col">
+                    <div className="form-group">
                       <label className="text-gray-600 text-sm mb-1">
                         About
                       </label>
@@ -211,10 +244,13 @@ const UserForm = ({ open, setOpen }) => {
                         </span>
                       )}
                     </div>
-
-                    <div className="dialog-form-button">
-                      <button>Submit</button>
-                    </div>
+                    <button
+                      type="submit"
+                      className="dialog-form-button"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Submitting..." : "Submit"}
+                    </button>
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
