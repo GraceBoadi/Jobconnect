@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import Users from "../models/userModel.js";
 
 export const updateUser = async (req, res, next) => {
+  console.log(req.body)
+  console.log(req.file)
   const {
     firstName,
     lastName,
@@ -12,6 +14,10 @@ export const updateUser = async (req, res, next) => {
     jobTitle,
     about,
   } = req.body;
+
+  if (req.file) {
+    profileUrl = req.file.path;
+  }
 
   try {
     if (!firstName || !lastName || !email || !contact || !jobTitle || !about) {

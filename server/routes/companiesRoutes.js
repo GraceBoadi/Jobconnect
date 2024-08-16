@@ -28,12 +28,12 @@ router.post("/register", limiter, register);
 router.post("/login", limiter, signIn);
 
 // GET DATA
-router.post("/get-company-profile", userAuth, getCompanyProfile);
-router.post("/get-company-joblisting", userAuth, getCompanyJobListing);
-router.get("/", getCompanies);
-router.get("/get-company/:id", getCompanyById);
+router.post("/profile", userAuth, getCompanyProfile);
+router.post("/jobs", userAuth, getCompanyJobListing);
+router.get("/all", getCompanies);
+router.get("/:id", getCompanyById);
 
 // UPDATE DATA
-router.put("/update-company", userAuth, updateCompanyProfile);
+router.put("/update", userAuth, updateCompanyProfile);
 
 export default router;

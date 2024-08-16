@@ -11,16 +11,16 @@ import {
 const router = express.Router();
 
 // POST JOB
-router.post("/upload-job", userAuth, createJob);
+router.post("/upload", userAuth, createJob);
 
 // IPDATE JOB
-router.put("/update-job/:jobId", userAuth, updateJob);
+router.put("/update/:id", userAuth, updateJob);
 
 // GET JOB POST
-router.get("/find-jobs", getJobPosts);
-router.get("/get-job-detail/:id", getJobById);
+router.get("/all", getJobPosts);
+router.get("/find/:id", getJobById);
 
 // DELETE JOB POST
-router.delete("/delete-job/:id", userAuth, deleteJobPost);
+router.delete("/delete/:id", userAuth, deleteJobPost);
 
 export default router;

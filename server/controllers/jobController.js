@@ -6,6 +6,7 @@ export const createJob = async (req, res, next) => {
   try {
     const {
       jobTitle,
+      jobURL,
       jobType,
       location,
       salary,
@@ -17,6 +18,7 @@ export const createJob = async (req, res, next) => {
 
     if (
       !jobTitle ||
+      !jobURL ||
       !jobType ||
       !location ||
       !salary ||
@@ -34,6 +36,7 @@ export const createJob = async (req, res, next) => {
 
     const jobPost = {
       jobTitle,
+      jobURL,
       jobType,
       location,
       salary,
@@ -69,6 +72,7 @@ export const updateJob = async (req, res, next) => {
   try {
     const {
       jobTitle,
+      jobURL,
       jobType,
       location,
       salary,
@@ -81,6 +85,7 @@ export const updateJob = async (req, res, next) => {
 
     if (
       !jobTitle ||
+      !jobURL ||
       !jobType ||
       !location ||
       !salary ||
@@ -97,6 +102,7 @@ export const updateJob = async (req, res, next) => {
 
     const jobPost = {
       jobTitle,
+      jobURL,
       jobType,
       location,
       salary,
@@ -134,8 +140,6 @@ export const getJobPosts = async (req, res, next) => {
     if (jtype) {
       queryObject.jobType = { $in: types };
     }
-
-    //    [2. 6]
 
     if (exp) {
       queryObject.experience = {
