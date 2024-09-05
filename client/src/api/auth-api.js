@@ -12,7 +12,7 @@ export const registerUser = async (userData) => {
     return response.data;
   } catch (error) {
     throw (
-      error.response.data.message || "An error occurred during registration"
+      error || "An error occurred during registration"
     );
   }
 };
@@ -25,7 +25,7 @@ export const signInUser = async (credentials) => {
     );
     return response.data;
   } catch (error) {
-    throw error.response.data.message || "An error occurred during sign-in";
+    throw error || "An error occurred during sign-in";
   }
 };
 
@@ -42,7 +42,7 @@ export const updateUser = async (userData, token) => {
     );
     return response.data;
   } catch (error) {
-    throw error.response.data.message || "An error occurred during the update";
+    throw error || "An error occurred during the update";
   }
 };
 
@@ -56,7 +56,7 @@ export const getUser = async (token) => {
     return response.data;
   } catch (error) {
     throw (
-      error.response.data.message ||
+      error ||
       "An error occurred while fetching the user data"
     );
   }

@@ -6,6 +6,7 @@ import "./user-form.css";
 import { updateUser } from "../../api/auth-api";
 import { Login } from "../../redux/userSlice";
 import { handleFileUpload } from "../../utils";
+import { toast } from "react-toastify";
 
 const UserForm = ({ open, setOpen }) => {
   const dispatch = useDispatch();
@@ -42,11 +43,24 @@ const UserForm = ({ open, setOpen }) => {
     };
 
     try {
-      const response = await updateUser(completeData, user?.token);
-      window.localStorage.setItem("userInfo", JSON.stringify(response.user));
-      window.localStorage.setItem("token", response.token);
-      dispatch(Login());
-      closeModal();
+      await updateUser(completeData, user?.token)
+        .then((response) => {
+          toast.success(response?.message, {
+            position: toast.TOP_RIGHT,
+          });
+          window.localStorage.setItem(
+            "userInfo",
+            JSON.stringify(response.user)
+          );
+          window.localStorage.setItem("token", response.token);
+          dispatch(Login());
+          closeModal();
+        })
+        .catch((e) => {
+          toast.error(e?.response?.data?.message, {
+            position: toast.TOP_RIGHT,
+          });
+        });
     } catch (error) {
       console.error("Error:", error);
     } finally {

@@ -9,13 +9,13 @@ const Footer = () => {
     <div>
       <div className="footer-container">
         <div className="footer-links">
-          {footerLinks.map(({ id, title, links }) => (
+          {footerLinks.map(({ id, title, links, to }) => (
             <div className="box-links" key={id + title}>
               <h2 className="">{title}</h2>
 
               <div className="links">
                 {links.map((link, index) => (
-                  <Link key={link + index} to="/" className="">
+                  <Link key={link + index} to={to[index]} className="">
                     {link}
                   </Link>
                 ))}
@@ -32,18 +32,15 @@ const Footer = () => {
               <button className="btn">Subscribe</button>
             </div>
             <div className="social-links">
-              <a>
-                <FaFacebookF />
-              </a>
-              <a>
-                <FaTwitter />
-              </a>
-              <a>
+              <Link to={""} target="blank_">
                 <FiInstagram />
-              </a>
-              <a>
+              </Link>
+              <Link
+                to={"https://www.linkedin.com/in/grace-boadi-a04803237/"}
+                target="blank_"
+              >
                 <FaLinkedinIn />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -51,9 +48,9 @@ const Footer = () => {
 
       <div className="footer-credit">
         <p>
-          &copy; 2024 Jobs Connect —
+          &copy; 2024 Job-Connect —
           <a href="#" target="_blank" rel="noopener noreferrer">
-            @Grace
+            @Gracey
           </a>
         </p>
 

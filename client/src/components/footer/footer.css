@@ -1,6 +1,6 @@
 .footer-container {
   padding: 2em;
-  background-color: var(--lily-400);
+  background-color: #020730;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
 }
@@ -31,7 +31,7 @@
 }
 
 .links a {
-  color: #fdfdfd;
+  color: #fff;
   font-size: 1em;
 }
 

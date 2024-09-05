@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { createJob } from "../../api/job-api";
 import { getCompanyById } from "../../api/company-api";
+import { toast } from "react-toastify";
 
 const Upload_Jobs = () => {
   const { user } = useSelector((state) => state.user);
@@ -49,7 +50,17 @@ const Upload_Jobs = () => {
         desc: data.desc,
         requirements: data.requirements,
       };
-      const job = await createJob(jobData, user.token);
+      await createJob(jobData, user.token)
+        .then((response) => {
+          toast.success(response?.message, {
+            position: toast.TOP_RIGHT,
+          });
+        })
+        .catch((e) => {
+          toast.error(e?.response?.data?.message, {
+            position: toast.TOP_RIGHT,
+          });
+        });
     } catch (error) {
       console.error("Error submitting job:", error);
     } finally {
@@ -181,7 +192,7 @@ const Upload_Jobs = () => {
                   <input
                     type="text"
                     name="jobURL"
-                    placeholder="e.g., Software Engineer"
+                    placeholder="e.g., https://jobs"
                     className="form-input"
                     {...register("jobURL", {
                       required: "Job URL is required",

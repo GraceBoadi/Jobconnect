@@ -34,36 +34,35 @@ const Sidebar = ({ isVisible, handleToggleSidebar }) => {
         </Link>
 
         <div className="side-nav">
-          <div className="item active">
+          <Link
+            to={`${
+              user?.accountType === "seeker"
+                ? `/dashboard`
+                : `/company-profile/${user?._id}`
+            }`}
+            className="item active"
+          >
             <i className="bx bx-search-alt"></i>
-            <Link
-              to={`${
-                user?.accountType === "seeker"
-                  ? `/dashboard`
-                  : `/company-profile/${user?._id}`
-              }`}
-            >
-              Dashboard
-            </Link>
-          </div>
-          <div className="item">
+            Dashboard
+          </Link>
+          <Link to={"/all-jobs"} className="item">
             <i className="bx bx-briefcase"></i>
-            <Link to={"/all-jobs"}>Jobs</Link>
-          </div>
-          <div className="item">
+            Jobs
+          </Link>
+          <Link to={"/company"} className="item">
             <i className="bx bx-message-square-dots"></i>
-            <Link to={"/company"}>Companies</Link>
-          </div>
+            Companies
+          </Link>
           {user?.accountType === "company" && (
-            <div className="item">
+            <Link to={"/upload-job"} className="item">
               <i className="bx bx-bookmark-minus"></i>
-              <Link to={"/upload-job"}>Upload Jobs</Link>
-            </div>
+              Upload Jobs
+            </Link>
           )}
-          <div className="item">
+          <Link to={"/about-us"} className="item">
             <i className="bx bx-cog"></i>
-            <Link to={"/about-us"}>About</Link>
-          </div>
+            About
+          </Link>
         </div>
 
         <div className="side-profile">

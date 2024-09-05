@@ -38,12 +38,12 @@
   gap: 1rem;
   padding: 0.8rem 2rem;
   border-radius: 1rem;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 }
 
 .search-box {
   width: 100%;
-  background-color: rgba(135, 94, 230, 0.4);
+  background-color: rgba(181, 198, 235, 0.856);
   backdrop-filter: blur(4px);
   padding: 2rem;
   border-radius: 1rem;
@@ -108,7 +108,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding-top: 2.5rem;
+  /* padding-top: 2.5rem; */
 }
 
 .hero-banner .popular-searches span {
@@ -232,9 +232,9 @@
 }
 
 .load-more button {
-  color: #1d4ed8;
+  color: #03052c;
   padding: 0.75rem 1.25rem;
-  border: 1px solid #1d4ed8;
+  border: 1px solid #03052c;
   border-radius: 10rem;
   cursor: pointer;
   font-size: 1rem;
@@ -243,7 +243,7 @@
 }
 
 .load-more button:hover {
-  background-color: #1d4ed8;
+  background-color: #03052c;
   color: #222;
 }
 
@@ -253,10 +253,11 @@
 }
 
 .value-text {
-  background-image: var(--gradient-1);
+  /* background-image: var(--gradient-1);
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; */
+  color: #03052c;
   font-size: 25px;
   padding: 2rem 0;
   font-weight: 600;
@@ -272,13 +273,13 @@
 
 .singleGrid {
   border-radius: 10px;
-  background-color: var(--lily-400);
+  background-color: rgba(181, 198, 235, 0.856);
   transition: background-color 0.2s ease-in-out;
   padding: 1.5rem;
   cursor: pointer;
 
   &:hover {
-    background-color: var(--lily-300);
+    background-color: #1972e756;
   }
 }
 
@@ -291,7 +292,7 @@
 .value-img {
   padding: 4px;
   border-radius: 0.8rem;
-  background-color: #dedef8;
+  background-color: #03052c;
   height: 40px;
   width: 40px;
   display: flex;
@@ -300,20 +301,22 @@
 }
 
 .singleGrid .item span {
-  color: #fff;
+  color: #03052c;
   font-size: 18px;
   font-weight: 600;
 }
 
 .singleGrid p {
-  color: #fff;
+  color: #222;
   font-size: 13px;
   font-weight: 600;
   padding-top: 1rem;
 }
 
-/* Desktop Styles (Large screens) */
-@media only screen and (min-width: 900px) {
+@media only screen and (max-width: 1023px) {
+  .hero-ban {
+    display: none;
+  }
 }
 
 /* Laptop Styles (Medium screens) */

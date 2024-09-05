@@ -13,7 +13,6 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FiPhoneCall, FiEdit3, FiUpload } from "react-icons/fi";
 import "./company-profile.css";
 import { getCompanyById } from "../../api/company-api";
-import { MdOutlineMenuOpen } from "react-icons/md";
 
 const Company_Profile = () => {
   const params = useParams();

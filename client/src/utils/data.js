@@ -10,7 +10,13 @@ import {
   CodeWave,
 } from "../assets";
 
-export const jobTypes = ["Full-Time", "Part-Time", "Contract", "Intern"];
+export const jobTypes = [
+  "Full-Time",
+  "Part-Time",
+  "Contract",
+  "Remote",
+  "Internship",
+];
 
 export const experience = [
   { title: "Under 1 Year", value: "0-1" },
@@ -281,16 +287,19 @@ export const footerLinks = [
     id: "01",
     title: "Company",
     links: ["Home", "About Us"],
+    to: ["/", "/about-us"],
   },
   {
     id: "02",
     title: "Policy",
     links: ["Our Policies", "Contact"],
+    to: ["/about-us", "/about-us"],
   },
   {
     id: "03",
     title: "Support",
     links: ["Support Center", "Feedback"],
+    to: ["/about-us", "/about-us", "/about-us"],
   },
 ];
 

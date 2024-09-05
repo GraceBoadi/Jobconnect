@@ -1,6 +1,6 @@
 .about-section {
   padding: 4rem;
-  background-color: transparent;
+  background-color:#020730 ;
 }
 
 .about-content {
@@ -12,11 +12,11 @@
 }
 
 .about-text {
-  color: #222;
+  color: #020730;
 }
 
 .about-text h1 {
-  color: #222;
+  color: #020730;
   font-size: 1.25rem;
   font-weight: bold;
 }

@@ -21,7 +21,7 @@
 }
 
 .navigation-container.sticky-bar {
-  background: linear-gradient(to bottom, #e8e1e9 0%, #d9c8d9 50%, #c5adc5 100%);
+  background: linear-gradient(to bottom, #030c52 0%, #030c52 50%, #030c52 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#e8e1e9, #c5adc5,GradientType=0 );
   transition: all 0.4s ease-in-out;
 }
@@ -47,8 +47,12 @@
 
 .navigation-logo {
   font-size: 1.4rem;
-  color: var(--lily-700);
+  color: #03052c;
   font-weight: bold;
+}
+
+.navigation-container.sticky-bar .navigation-logo {
+  color: #fff;
 }
 
 .navigation-logo span {
@@ -143,11 +147,15 @@
 }
 
 .menu-toggle {
-  color: var(--lily-800);
+  color: #030c52;
   height: 1.25rem;
   width: 1.25rem;
   cursor: pointer;
   display: none;
+}
+
+.navigation-container.sticky-bar .menu-toggle {
+  color: #fff;
 }
 
 .menu-items {
@@ -211,7 +219,8 @@
 
 /* Mobile Menu Styles */
 .mobile-menu {
-  background-color: var(--lily-700);
+  background-color: rgba(181, 198, 235, 0.856);
+  backdrop-filter: blur(6px);
   position: absolute;
   top: 100%;
   left: 0;

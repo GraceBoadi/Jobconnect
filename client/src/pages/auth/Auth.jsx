@@ -15,6 +15,7 @@ import { registerUser, signInUser } from "../../api/auth-api";
 import { Login } from "../../redux/userSlice";
 import { registerCompany, signInCompany } from "../../api/company-api";
 import { Navigation } from "../../components";
+import { toast } from "react-toastify";
 
 const Auth = () => {
   const { user } = useSelector((state) => state.user);
@@ -48,33 +49,74 @@ const Auth = () => {
     try {
       if (accountType === "seeker") {
         if (isRegister) {
-          const response = await registerUser(data);
-          setIsRegister(false);
+          await registerUser(data)
+            .then((response) => {
+              toast.success(response?.message, {
+                position: toast.TOP_RIGHT,
+              });
+              setIsRegister(false);
+            })
+            .catch((e) => {
+              toast.error(e?.response?.data?.message, {
+                position: toast.TOP_RIGHT,
+              });
+            });
         } else {
-          const response = await signInUser(data);
-          window.localStorage.setItem(
-            "userInfo",
-            JSON.stringify(response.user)
-          );
-          window.localStorage.setItem("token", response.token);
+          await signInUser(data)
+            .then((response) => {
+              window.localStorage.setItem(
+                "userInfo",
+                JSON.stringify(response.user)
+              );
+              window.localStorage.setItem("token", response.token);
+              toast.success(response?.message, {
+                position: toast.TOP_RIGHT,
+              });
 
-          dispatch(Login());
-          navigate("/");
+              dispatch(Login());
+              navigate("/");
+            })
+            .catch((e) => {
+              toast.error(e?.response?.data?.message, {
+                position: toast.TOP_RIGHT,
+              });
+            });
         }
       } else {
         if (isRegister) {
-          const response = await registerCompany(data);
-          setIsRegister(false);
+          await registerCompany(data)
+            .then((response) => {
+              toast.success(response?.message, {
+                position: toast.TOP_RIGHT,
+              });
+              setIsRegister(false);
+            })
+            .catch((e) => {
+              console.log(e);
+              toast.error(e?.response?.data?.message, {
+                position: toast.TOP_RIGHT,
+              });
+            });
         } else {
-          const response = await signInCompany(data);
-          window.localStorage.setItem(
-            "userInfo",
-            JSON.stringify(response.user)
-          );
-          window.localStorage.setItem("token", response.token);
+          await signInCompany(data)
+            .then((response) => {
+              toast.success(response?.message, {
+                position: toast.TOP_RIGHT,
+              });
+              window.localStorage.setItem(
+                "userInfo",
+                JSON.stringify(response.user)
+              );
+              window.localStorage.setItem("token", response.token);
 
-          dispatch(Login());
-          navigate("/");
+              dispatch(Login());
+              navigate("/");
+            })
+            .catch((e) => {
+              toast.error(e?.response?.data?.message, {
+                position: toast.TOP_RIGHT,
+              });
+            });
         }
       }
     } catch (error) {

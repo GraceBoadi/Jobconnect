@@ -158,13 +158,11 @@ const AllJobs = () => {
             </div>
 
             <div className="hero-ban">
-              {/* <img
-                src={HeroBanner}
-                width="327"
-                height="490"
+              <img
+                src={HeroBanner} 
                 alt="Wren Clark"
                 className="w-100"
-              /> */}
+              />
 
               <img
                 src={Pattern2}
@@ -279,10 +277,10 @@ const AllJobs = () => {
             <div className="singleGrid">
               <div className="item">
                 <div className="value-img">
-                  <img src="" alt="" />
+                  <img src={Pattern2} alt="" />
                 </div>
 
-                <span>Job Connect</span>
+                <span>Job-Connect</span>
               </div>
               <p>
                 Things being made beautiful and simple are at the heart of
@@ -292,27 +290,25 @@ const AllJobs = () => {
             <div className="singleGrid">
               <div className="item">
                 <div className="value-img">
-                  <img src="" alt="" />
+                  <img src={Pattern3} alt="" />
                 </div>
 
-                <span>Simplicity</span>
+                <span>For Companies</span>
               </div>
               <p>
-                Things being made beautiful and simple are at the heart of
-                everything we do.
+                Find professionals from around the country and across all IT skills .
               </p>
             </div>
             <div className="singleGrid">
               <div className="item">
                 <div className="value-img">
-                  <img src="" alt="" />
+                  <img src={Pattern2} alt="" />
                 </div>
 
-                <span>Integrity</span>
+                <span>For Jobseekers</span>
               </div>
               <p>
-                Things being made beautiful and simple are at the heart of
-                everything we do.
+                Build your professional profile and find new job opportunities.
               </p>
             </div>
           </div>

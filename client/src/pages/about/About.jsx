@@ -25,9 +25,9 @@ const About = () => {
           <div className="content">
             <div className="about-content">
               <div className="about-text">
-                <h1 className="about-title">
+                <h2 className="about-title">
                   Jobs-Connect: Your Career Connection
-                </h1>
+                </h2 >
                 <br />
                 <p className="about-description">
                   <b>Jobs-Connect</b> is a one-stop platform that connects job

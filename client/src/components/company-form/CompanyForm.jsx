@@ -7,6 +7,7 @@ import { Fragment } from "react";
 import { updateCompanyProfile } from "../../api/company-api";
 import { Login } from "../../redux/userSlice";
 import { handleFileUpload } from "../../utils";
+import { toast } from "react-toastify";
 
 const CompanyForm = ({ open, setOpen }) => {
   const { user } = useSelector((state) => state.user);
@@ -40,11 +41,24 @@ const CompanyForm = ({ open, setOpen }) => {
 
     try {
       const token = user?.token;
-      const response = await updateCompanyProfile(completeData, token);
-      window.localStorage.setItem("userInfo", JSON.stringify(response.company));
-      window.localStorage.setItem("token", response.token);
-      dispatch(Login());
-      closeModal();
+      await updateCompanyProfile(completeData, token)
+        .then((response) => {
+          toast.success(response?.message, {
+            position: toast.TOP_RIGHT,
+          });
+          window.localStorage.setItem(
+            "userInfo",
+            JSON.stringify(response.company)
+          );
+          window.localStorage.setItem("token", response.token);
+          dispatch(Login());
+          closeModal();
+        })
+        .catch((e) => {
+          toast.error(e?.response?.data?.message, {
+            position: toast.TOP_RIGHT,
+          });
+        });
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,5 +1,4 @@
 import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
-
 import {
   About,
   AllJobs,
@@ -13,6 +12,8 @@ import {
 } from "./pages";
 import { useSelector } from "react-redux";
 import "./Normal.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout() {
   const { user } = useSelector((state) => state.user);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/company" element={<Company />} />
         <Route path="/job-details/:id" element={<JobDetails />} />
       </Routes>
+      <ToastContainer bodyClassName="toastify-content" />
     </main>
   );
 }
