@@ -1,59 +1,104 @@
-import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import {
-  About,
-  AllJobs,
-  Auth,
-  Company,
-  Company_Profile,
-  Dashboard,
-  JobDetails,
-  Upload_Jobs,
-  User_Profile,
-} from "./pages";
-import { useSelector } from "react-redux";
-import "./Normal.css";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Navbar from "./components/shared/Navbar";
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
+import Home from "./components/Home";
+import Jobs from "./components/jobs/Jobs";
+import Browse from "./components/Browse";
+import Profile from "./components/profile/Profile";
+import JobDescription from "./components/jobs/JobDescription";
+import Companies from "./components/admin/Companies";
+import CompanyCreate from "./components/admin/CompanyCreate";
+import CompanySetup from "./components/admin/CompanySetup";
+import AdminJobs from "./components/admin/AdminJobs";
+import PostJob from "./components/admin/PostJob";
+import Applicants from "./components/admin/Applicants";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
 
-function Layout() {
-  const { user } = useSelector((state) => state.user);
-  const location = useLocation();
-
-  return user?.token ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/auth" state={{ from: location }} replace />
-  );
-}
-
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/jobs",
+    element: <Jobs />,
+  },
+  {
+    path: "/description/:id",
+    element: <JobDescription />,
+  },
+  {
+    path: "/browse",
+    element: <Browse />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  //admin
+  {
+    path: "/admin/companies",
+    element: (
+      <ProtectedRoute>
+        <Companies />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/companies/create",
+    element: (
+      <ProtectedRoute>
+        <CompanyCreate />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/companies/:id",
+    element: (
+      <ProtectedRoute>
+        <CompanySetup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/jobs",
+    element: (
+      <ProtectedRoute>
+        <AdminJobs />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/jobs/create",
+    element: (
+      <ProtectedRoute>
+        <PostJob />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/jobs/:id/applicants",
+    element: (
+      <ProtectedRoute>
+        <Applicants />
+      </ProtectedRoute>
+    ),
+  },
+]);
 function App() {
-  const { user } = useSelector((state) => state.user);
-
-  console.log("user", user);
   return (
-    <main>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route
-            path="/"
-            element={<Navigate to="/all-jobs" replace={true} />}
-          />
-
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/user-profile/:id" element={<User_Profile />} />
-          <Route path="/company-profile/:id" element={<Company_Profile />} />
-          <Route path="/upload-job" element={<Upload_Jobs />} />
-
-          <Route path="/about-us" element={<About />} />
-        </Route>
-
-        <Route path="/all-jobs" element={<AllJobs />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/company" element={<Company />} />
-        <Route path="/job-details/:id" element={<JobDetails />} />
-      </Routes>
-      <ToastContainer bodyClassName="toastify-content" />
-    </main>
+    <div>
+      <RouterProvider router={appRouter} />
+    </div>
   );
 }
 

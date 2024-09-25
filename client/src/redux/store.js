@@ -1,17 +1,42 @@
-import { configureStore } from "@reduxjs/toolkit";
-
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import authSlice from "./authSlice";
+import jobSlice from "./jobSlice";
 import {
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
-} from "react-redux";
-import { rootReducer } from "./rootReducer";
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import companySlice from "./companySlice";
+import applicationSlice from "./applicationSlice";
 
-const store = configureStore({
-  reducer: rootReducer,
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage,
+};
+
+const rootReducer = combineReducers({
+  auth: authSlice,
+  job: jobSlice,
+  company: companySlice,
+  application: applicationSlice,
 });
 
-const { dispatch } = store;
-const useSelector = useAppSelector;
-const useDispatch = () => useAppDispatch();
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export { store, dispatch, useDispatch, useSelector };
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+export default store;
