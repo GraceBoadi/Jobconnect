@@ -22,6 +22,12 @@ const corsOptions = {
   credentials: true,
 };
 
+// Add this to handle the root route
+app.get("/", (req, res) => {
+  res.send("Welcome to JobConnect API");
+});
+
+
 app.use(cors(corsOptions));
 
 app.use("/api/v1/user", userRoute);
