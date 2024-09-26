@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use("/files", express.static("files"));
 
 const corsOptions = {
-  origin: "http://localhost:3000",  // Change this to your frontend URL in production
+  origin: "https://jobconnect-1.onrender.com",  // Change this to your frontend URL in production
   credentials: true,
 };
 
