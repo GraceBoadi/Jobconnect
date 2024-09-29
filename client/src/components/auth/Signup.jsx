@@ -114,7 +114,7 @@ const Signup = () => {
             />
           </div>
           <div className="role-selection">
-            <RadioGroup className="role-options">
+            <div className="role-options">
               <div className="role-option">
                 <Input
                   type="radio"
@@ -137,7 +137,7 @@ const Signup = () => {
                 />
                 <Label htmlFor="r2">Recruiter</Label>
               </div>
-            </RadioGroup>
+            </div>
             <div className="picture-option">
               <Label>Profile</Label>
               <Input

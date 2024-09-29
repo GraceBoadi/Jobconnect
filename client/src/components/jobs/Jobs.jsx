@@ -44,7 +44,6 @@ const Jobs = () => {
                     animate={{ opacity: 1, transform: "translateX(0)" }}
                     exit={{ opacity: 0, transform: "translateX(-100px)" }}
                     transition={{ duration: 0.3 }}
-                    className="job-card"
                   >
                     <Job job={job} />
                   </motion.li>

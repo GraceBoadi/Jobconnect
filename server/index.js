@@ -21,7 +21,13 @@ app.use("/files", express.static("files"));
 
 app.use(
   cors({
-    origin: ["*", "http://localhost:3000", "http://localhost:3000/"], // Specify allowed origins
+    origin: [
+      "*",
+      "http://localhost:3000",
+      "http://localhost:3000/",
+      "https://jobconnect-net.netlify.app",
+      "https://jobconnect-net.netlify.app/",
+    ], // Specify allowed origins
     credentials: true, // Allow sending cookies in requests
     allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // Allow specific methods

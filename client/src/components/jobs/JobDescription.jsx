@@ -61,6 +61,12 @@ const JobDescription = () => {
         }
       } catch (error) {
         console.log(error);
+        if (
+          error?.status === 401 &&
+          error?.response?.data?.message === "User not authenticated"
+        ) {
+          navigate("/login");
+        }
       }
     };
     fetchSingleJob();

@@ -82,7 +82,7 @@ const Login = () => {
             />
           </div>
           <div className="role-selection">
-            <RadioGroup className="role-options">
+            <div className="role-options">
               <div className="role-option">
                 <Input
                   type="radio"
@@ -105,7 +105,7 @@ const Login = () => {
                 />
                 <Label htmlFor="r2">Recruiter</Label>
               </div>
-            </RadioGroup>
+            </div>
           </div>
           {loading ? (
             <Button className="auth-button">
