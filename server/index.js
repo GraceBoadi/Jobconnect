@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use("/files", express.static("files"));
 
 const corsOptions = {
-  origins: "http://localhost:3000/", // Change this to your frontend URL in production
+  origins: "*", // Change this to your frontend URL in production
   credentials: true,
 };
 
