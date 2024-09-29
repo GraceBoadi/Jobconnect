@@ -12,6 +12,7 @@ import applicationRoute from "./routes/application.route.js";
 dotenv.config({});
 
 const app = express();
+const router = express.Router();
 
 // middleware
 app.use(express.json());
@@ -27,6 +28,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // API routes
+app.use(
+  router.get("/", (req, res) =>
+    res.json({ Welcome: "This is Job Connect! Get Ready to Hunt!" })
+  )
+)
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
