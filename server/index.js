@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use("/files", express.static("files"));
 
 const corsOptions = {
-  origins: "https://jobconnect-1.onrender.com", // Change this to your frontend URL in production
+  origins: "https://jobconnect-net.netlify.app/", // Change this to your frontend URL in production
   credentials: true,
 };
 
