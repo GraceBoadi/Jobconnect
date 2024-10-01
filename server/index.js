@@ -24,8 +24,8 @@ app.use(
       "*",
       "http://localhost:3000",
       "http://localhost:3000/",
-      "https://react-first-sepia.vercel.app",
-      "https://react-first-sepia.vercel.app/",
+      "https://jobconnect-gold.vercel.app",
+      "https://jobconnect-gold.vercel.app/",
     ], // Specify allowed origins
     credentials: true, // Allow sending cookies in requests
     allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
