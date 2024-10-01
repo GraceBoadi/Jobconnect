@@ -1,8 +1,0 @@
-[build]
-  # Specify your frontend build command and output directory
-  publish = "client/dist"
-  command = "npm install && npm run build"
-
-[functions]
-  # Directory for serverless functions
-  directory = "netlify/functions"

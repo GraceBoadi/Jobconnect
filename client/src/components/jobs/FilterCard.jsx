@@ -8,24 +8,15 @@ import "./jobs.css";
 const fitlerData = [
   {
     fitlerType: "Location",
-    array: [
-      "Accra",
-      "Tema",
-      "Kumasi",
-      "Eastern Region",
-      "Northern Region",
-      "Western Region",
-      "Volta Region",
-    ],
+    array: ["Accra", "Tema", "Kumasi", "Koforidua", "Ho"],
   },
-  {
-    fitlerType: "Job Type",
-    array: ["Full time", "Contract", "Internship", "Hybrid", "Remote"],
-  },
-
   {
     fitlerType: "Experience",
-    array: ["Entry level", "mid level", "senior level"],
+    array: ["1 - 5", "6 - 10", "11 - 20"],
+  },
+  {
+    fitlerType: "Salary",
+    array: ["100 - 1000", "1000 - 5000", "5000 - 10k"],
   },
 ];
 
@@ -35,21 +26,23 @@ const FilterCard = () => {
   const changeHandler = (value) => {
     setSelectedValue(value);
   };
+  
   useEffect(() => {
     dispatch(setSearchedQuery(selectedValue));
   }, [selectedValue]);
+
   return (
     <div className="filter-panel">
       <h1 className="filter-title">Filter Jobs</h1>
       <hr className="mt-3" />
       <RadioGroup value={selectedValue} onValueChange={changeHandler}>
         {fitlerData.map((data, index) => (
-          <div>
+          <div key={index}>
             <h1 className="filter-title">{data.fitlerType}</h1>
             {data.array.map((item, idx) => {
               const itemId = `id${index}-${idx}`;
               return (
-                <div className="filter-item">
+                <div className="filter-item" key={idx}>
                   <RadioGroupItem value={item} id={itemId} />
                   <Label htmlFor={itemId}>{item}</Label>
                 </div>

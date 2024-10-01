@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from "@/utils/constant";
 import { setSingleJob } from "@/redux/jobSlice";
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import "./jobs.css";
 import Navbar from "../shared/Navbar";
+import { getCookie } from "@/lib";
 
 const JobDescription = () => {
   const { singleJob } = useSelector((store) => store.job);
@@ -22,12 +23,20 @@ const JobDescription = () => {
   const params = useParams();
   const jobId = params.id;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const applyJobHandler = async () => {
     try {
+      // Get the token from cookies
+      const token = getCookie("token");
       const res = await axios.get(
         `${APPLICATION_API_END_POINT}/apply/${jobId}`,
-        { withCredentials: true }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
       );
 
       if (res.data.success) {
@@ -48,7 +57,12 @@ const JobDescription = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
+        // Get the token from cookies
+        const token = getCookie("token");
         const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           withCredentials: true,
         });
         if (res.data.success) {
@@ -73,7 +87,7 @@ const JobDescription = () => {
   }, [jobId, dispatch, user?._id]);
 
   return (
-    <>
+    <div className="container_">
       <Navbar />
       <div className="job-details-container">
         <div className="job-details-header">
@@ -140,7 +154,7 @@ const JobDescription = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

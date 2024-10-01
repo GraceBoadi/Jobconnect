@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { RadioGroup } from "../ui/radio-group";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -55,7 +54,7 @@ const Login = () => {
     }
   }, []);
   return (
-    <div>
+    <div className="container_">
       <Navbar />
       <div className="auth-form-container">
         <form onSubmit={submitHandler} className="auth-form">

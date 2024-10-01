@@ -18,10 +18,12 @@ const HeroSection = () => {
   return (
     <div className="job-hunting-container">
       <div className="job-search-wrapper">
-        <button className="start-hunting-btn">Kickstart Your Job Search Now!</button>
+        <button className="start-hunting-btn">
+          Kickstart Your Job Search Now!
+        </button>
         <h1 className="dream-job-title">
-          Search, Apply & Get Your <br />
-          <span className="dream-job-text">Dream Tech Jobs in Ghana</span>
+          Search, Apply & Get <br />
+          Your <span className="dream-job-text">Dream Tech Jobs</span> In Ghana.
         </h1>
         <p className="description">
           By bringing together talent and opportunity, JobConnect strives to be

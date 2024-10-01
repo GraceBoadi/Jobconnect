@@ -26,14 +26,15 @@ const Job = ({ job }) => {
               : `${daysAgoFunction(job?.createdAt)} days ago`}
           </p>
         </div>
+        <Button className="bookmark-button" variant="outline" size="icon">
+          <Bookmark />
+        </Button>
       </div>
       <div className="job-card-body">
         <div className="job-card-company">
           <Button className="company-logo-button" variant="outline" size="icon">
             <Avatar>
-              <AvatarImage
-                src={`http://localhost:8000/files/${job?.company?.logo}`}
-              />
+              <AvatarImage src={`${job?.company?.logo}`} />
             </Avatar>
           </Button>
           <div className="company-details">
@@ -62,6 +63,7 @@ const Job = ({ job }) => {
           >
             Details
           </Button>
+          {/* <Button className="save-for-later-button">Save For Later</Button> */}
         </div>
       </div>
     </div>

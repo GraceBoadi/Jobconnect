@@ -10,6 +10,7 @@ import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
 import "./navbar.css";
+import { getCookie } from "@/lib";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
@@ -18,7 +19,12 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
+      // Get the token from cookies
+      const token = getCookie("token");
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         withCredentials: true,
       });
       if (res.data.success) {
@@ -31,39 +37,18 @@ const Navbar = () => {
       toast.error(error.response.data.message);
     }
   };
+
   return (
     <div className="header">
       <div className="header-container">
         <div>
-          <h1 className="logo-text">
-            Job<span className="logo-highlight">Connect</span>
-          </h1>
+          <Link to={"/"}>
+            <h1 className="logo-text">
+              Job<span className="logo-highlight">Connect</span>
+            </h1>
+          </Link>
         </div>
         <div className="header-nav">
-          <ul className="nav-links">
-            {user && user.role === "recruiter" ? (
-              <>
-                <li>
-                  <Link to="/admin/companies">Companies</Link>
-                </li>
-                <li>
-                  <Link to="/admin/jobs">Jobs</Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/jobs">Jobs</Link>
-                </li>
-                <li>
-                  <Link to="/browse">Browse</Link>
-                </li>
-              </>
-            )}
-          </ul>
           {!user ? (
             <div className="login-signup-buttons">
               <Link to="/login">
@@ -78,7 +63,7 @@ const Navbar = () => {
               <PopoverTrigger asChild>
                 <Avatar className="user-avatar">
                   <AvatarImage
-                    src={`http://localhost:8000/files/${user?.profile?.profilePhoto}`}
+                    src={`${user?.profile?.profilePhoto}`}
                     alt="@shadcn"
                   />
                 </Avatar>
@@ -88,7 +73,7 @@ const Navbar = () => {
                   <div className="user-details">
                     <Avatar className="user-avatar">
                       <AvatarImage
-                        src={`http://localhost:8000/files/${user?.profile?.profilePhoto}`}
+                        src={`${user?.profile?.profilePhoto}`}
                         alt="@shadcn"
                       />
                     </Avatar>
@@ -98,13 +83,30 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div className="user-actions">
-                    {user && user.role === "seeker" && (
-                      <div className="user-actions-button">
-                        <User2 />
+                    {user && user.role === "seeker" ? (
+                      <>
+                        <div className="user-actions-button">
+                          <User2 />
+                          <Button variant="link">
+                            <Link to="/profile">View Profile</Link>
+                          </Button>
+                        </div>
                         <Button variant="link">
-                          <Link to="/profile">View Profile</Link>
+                          <Link to="/jobs">Jobs</Link>
                         </Button>
-                      </div>
+                        <Button variant="link">
+                          <Link to="/browse">Browse</Link>
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button variant="link">
+                          <Link to="/admin/companies">Companies</Link>
+                        </Button>
+                        <Button variant="link">
+                          <Link to="/admin/jobs">Jobs</Link>
+                        </Button>
+                      </>
                     )}
 
                     <div className="user-actions-button">

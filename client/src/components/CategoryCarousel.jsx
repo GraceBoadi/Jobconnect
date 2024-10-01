@@ -18,18 +18,6 @@ const category = [
   "Data Science",
   "Graphic Designer",
   "FullStack Developer",
-  "Project Manager",
-  "CyberSecurity Analyst",
-  "IT Technicians",
-  "Network Engineer",
-  "Quality Assurance (QA) Engineer",
-  "UI/UX Designer",
-  "System Administrator",
-  "Cloud Architect",
-  "Database Administrator (DBA)",
-  "Data Scientist",
-  "DevOps Engineer",
-
 ];
 
 const CategoryCarousel = () => {

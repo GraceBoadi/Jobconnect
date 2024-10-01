@@ -1,36 +1,80 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import getDataUri from "../utils/datauri.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
 
-    if (
-      !fullname ||
-      !email ||
-      !phoneNumber ||
-      !password ||
-      !role ||
-      !req.file
-    ) {
+    // Check for missing required fields and send specific error messages
+    if (!fullname) {
       return res.status(400).json({
-        message: "Something is missing",
+        message: "Full name is required.",
+        success: false,
+      });
+    }
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required.",
+        success: false,
+      });
+    }
+    if (!phoneNumber) {
+      return res.status(400).json({
+        message: "Phone number is required.",
+        success: false,
+      });
+    }
+    if (!password) {
+      return res.status(400).json({
+        message: "Password is required.",
+        success: false,
+      });
+    }
+    if (!role) {
+      return res.status(400).json({
+        message: "Role is required.",
+        success: false,
+      });
+    }
+    if (!req.file) {
+      return res.status(400).json({
+        message: "Profile photo is required.",
         success: false,
       });
     }
 
-    const fileName = req.file?.filename;
+    // Process the uploaded file
+    const file = req.file;
+    const fileUri = getDataUri(file);
 
+    // Cloudinary upload and failure check
+    let cloudResponse;
+    try {
+      cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    } catch (cloudError) {
+      return res.status(500).json({
+        message: "Failed to upload profile photo to Cloudinary.",
+        success: false,
+        error: cloudError.message, // Include cloudinary error details
+      });
+    }
+
+    // Check if the user already exists
     const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
-        message: "User already exist with this email.",
+        message: "User already exists with this email.",
         success: false,
       });
     }
+
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create the new user
     await User.create({
       fullname,
       email,
@@ -38,25 +82,44 @@ export const register = async (req, res) => {
       password: hashedPassword,
       role,
       profile: {
-        profilePhoto: fileName,
+        profilePhoto: cloudResponse.secure_url,
       },
     });
 
+    // Success response
     return res.status(201).json({
       message: "Account created successfully.",
       success: true,
     });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      message: "An error occurred during registration.",
+      success: false,
+      error: error.message, // Include the error message in the response
+    });
   }
 };
+
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
 
-    if (!email || !password || !role) {
+    if (!email) {
       return res.status(400).json({
-        message: "Something is missing",
+        message: "Email is required.",
+        success: false,
+      });
+    }
+    if (!password) {
+      return res.status(400).json({
+        message: "Password is required.",
+        success: false,
+      });
+    }
+    if (!role) {
+      return res.status(400).json({
+        message: "Role is required.",
         success: false,
       });
     }
@@ -129,7 +192,19 @@ export const updateProfile = async (req, res) => {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
 
     const file = req.file;
-    const fileName = req.file?.filename;
+    // const fileName = req.file?.filename;
+    const fileUri = getDataUri(file);
+    // Cloudinary upload and failure check
+    let cloudResponse;
+    try {
+      cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    } catch (cloudError) {
+      return res.status(500).json({
+        message: "Failed to upload profile photo to Cloudinary.",
+        success: false,
+        error: cloudError.message, // Include cloudinary error details
+      });
+    }
 
     let skillsArray;
     if (skills) {
@@ -152,8 +227,8 @@ export const updateProfile = async (req, res) => {
     if (skills) user.profile.skills = skillsArray;
 
     // resume comes later here...
-    if (fileName) {
-      user.profile.resume = fileName; // save the fileName
+    if (cloudResponse) {
+      user.profile.resume = cloudResponse.secure_url;
       user.profile.resumeOriginalName = file.originalname; // Save the original file name
     }
 
